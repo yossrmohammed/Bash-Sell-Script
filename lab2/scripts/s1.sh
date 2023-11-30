@@ -1,11 +1,13 @@
 #! /bin/bash
-<< Comment
- export x=5
+
+ #export x=5
 
 
-./s2.sh
-Comment
-  x=5
+# ./s2.sh
+
+ x=5
 
 
 ./s2.sh $x
+
+

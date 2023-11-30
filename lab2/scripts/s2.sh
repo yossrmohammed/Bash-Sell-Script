@@ -1,4 +1,4 @@
 #! /bin/bash
 
-echo $1
-
+## echo $x
+ echo $1
