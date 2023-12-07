@@ -106,7 +106,249 @@
 ###### ls -R $@   
 ###### fi
 ![UNFOUND](https://github.com/yossrmohammed/Bash-Sell-Script/blob/main/lab2/output/q6.png)
+### 7. Create a script called mytest where
+#!/bin/bash
+######  echo "Type : "
+######  if [ -f $1 ] 
+###### then       
+###### 	echo file
+######  elif [ -d $1 ] 
+###### then
+###### echo directory
+###### fi
+###### echo  Available permissions : 
+###### if [ -r $1 ] 
+###### then
+###### 	echo  Read
+###### fi
+###### if [ -w $1 ] 
+###### then       
+###### 	echo   Write
+###### fi
+###### if [ -x $1 ] 
+###### then
+######        	echo  Execute
+fi
+![UNFOUND](https://github.com/yossrmohammed/Bash-Sell-Script/blob/main/lab2/output/q7.png)
+
+### 8. Create a script called mytest where
+
+   #### 1- It asks the user about his/her login name
+  #### 2-It prints full info about files and directories in his/her home directory
+  #### 3-Copy his/her files and directories as much as you can in /tmp directory Get his current processes status
+
+#!/bin/bash
+
+######  read -p "enter your login name : " lname;
+######  homedir="/home/$lname"
+
+######  if [ -e $homedir ]
+###### then
+###### ls -l $homedir
+
+
+ ###### echo "Processes Status : "
+###### ps -f
+###### cp -r $homeDir /tmp
+###### fi
+
+
+![UNFOUND](https://github.com/yossrmohammed/Bash-Sell-Script/blob/main/lab2/output/q8.png)
+
+# Lab 3
+
+### 1. Write a script called mycase, using the case utility to checks the type of character entered by a user:
+### a. Upper Case.
+### b. Lower Case.
+### c. Number.
+### d. Nothing.
+#! /bin/bash
+ export LC_COLLATE=C
+ shopt -s extglob
+ read -p "Enter character : " char
+
+ case $char in
+	 @([A-Z]))
+		 echo Uper Case
+		 ;;
+	@([a-z]))
+		echo Lower Case
+		;;
+	@([0-9]))
+		echo Number
+		;;
+	*)
+		echo Nothing
+		;;
+esac
+
+![UNFOUND](https://github.com/yossrmohammed/Bash-Sell-Script/blob/main/lab3/output/q1.png)
+
+### 2. Enhanced the previous script, by checking the type of string entered by a user:
+### a. Upper Cases.
+### b. Lower Cases.
+### c. Numbers.
+### d. Mix.
+### e. Nothing.
+# ! /bin/bash
+ export LC_COLLATE=C
+ shopt -s extglob
+ read -p "Enter String : " char
+
+ case $char in
+	 +([A-Z]))
+		 echo Uper Case
+		 ;;
+	+([a-z]))
+		echo Lower Case
+		;;
+	+([0-9]))
+		echo Number
+		;;
+	+([a-zA-Z0-9]))
+		echo Mixed String
+		;;
+	*)
+		echo Nothing
+		;;
+esac
+
+![UNFOUND](https://github.com/yossrmohammed/Bash-Sell-Script/blob/main/lab3/output/q2.png)
+
+### 3. Write a script called mychmod using for utility to give execute permission to all files and directories in your home directory.
+ #! /bin/bash
+cd ~
+for files in `ls  `
+do
+chmod +x ~/$files
+done
+ 
+![UNFOUND](https://github.com/yossrmohammed/Bash-Sell-Script/blob/main/lab3/output/q3-before.png)
+![UNFOUND](https://github.com/yossrmohammed/Bash-Sell-Script/blob/main/lab3/output/q3-after.png)
+
+### 4. Write a script called mybackup using for utility to create a backup of only files in your home directory.
+![UNFOUND]
+![UNFOUND]
+
+### 5. Write a script called mymail using for utility to send a mail to all users in the system. Note: write the mail body in a file called mtemplate. 
+#! /bin/bash 
+for name in `cut -d: -f1 /etc/passwd`
+do
+	if [[ -d "/home/$name" ]]
+	then 
+	mail -s "geeting mail" $name < mtemplate
+
+	echo sending mail to $name $?
+	fi	
+done
+
+![UNFOUND](https://github.com/yossrmohammed/Bash-Sell-Script/blob/main/lab3/output/q5.png)
+
+### 6. Write a script called chkmail to check for new mails every 10 seconds. Note: mails are saved in /var/mail/username.
+#! /bin/bash
+ declare -i noofmails=0
+
+while true 
+do
+newmail=`cat /var/mail/$USER | wc -l` 
+if [[ $newmail > $noofmails  ]]
+then
+	echo NEW MAIL 
+fi
+noofmails=$newmail
 
 
 
+done
+sleep 10
 
+![UNFOUND](https://github.com/yossrmohammed/Bash-Sell-Script/blob/main/lab3/output/q6.png)
+
+### 7. What is the output of the following script
+##### output is 1
+
+
+
+### 8. Create the following menu:
+### a. Press 1 to ls
+### b. Press 2 to ls –a
+### c. Press 3 to exit 
+### Using select utility then while utility.
+#! /bin/bash
+
+select item in 'ls' 'ls -a' 'exit'
+do
+ while [[ $item =  "ls"  ]]
+ do 
+	 read -p "enter path :" path
+	 ls $path
+	 break
+ done
+  while [[ $item =  "ls -a"  ]]
+ do
+         read -p "enter path :" path
+         ls -a $path
+	 break
+ done
+ while [[ $item =  "exit"  ]]
+ do
+         
+	 exit 1
+ done
+
+done
+
+![UNFOUND](https://github.com/yossrmohammed/Bash-Sell-Script/blob/main/lab3/output/q8.png)
+
+### 9. Write a script called myarr that ask a user how many elements he wants to enter in an array, fill the array and then print it.
+#! /bin/bash
+size=0
+read -p "enter size of array : " size
+while (( $size <= 0  ))
+do 
+	echo invalid value
+	read -p "enter size of array : " size
+done
+for (( i = 0; i < $size; ++i ))
+do
+  read -p "enter element number : $((i+1)) : "  arr[$i]
+done
+
+echo ${arr[@]}
+
+![UNFOUND](https://github.com/yossrmohammed/Bash-Sell-Script/blob/main/lab3/output/q9.png)
+
+### 10.Write a script called myavg that calculate average of all numbers entered by a user. Note: use arrays
+#!/bin/bash
+
+read -p "enter size of array : " size
+
+while (( $size <= 0  ))
+do
+	echo invalid value
+	read -p "enter size of array : " size
+done
+
+sum=0
+for (( i = 0; i < $size; ++i ))
+do
+  read -p "enter element number : $((i+1)) : " value
+  arr[$i]=value
+  ((sum += $value))
+done
+
+echo $sum/$size  | bc -l
+![UNFOUND](https://github.com/yossrmohammed/Bash-Sell-Script/blob/main/lab3/output/q10.png)
+
+### 11.Write a function called mysq that calculate square if its argument.
+#!/bin/bash
+
+function mysq
+{
+       	(( square = $1 * $1 ))
+	echo $square;
+}
+
+mysq $1
+
+![UNFOUND](https://github.com/yossrmohammed/Bash-Sell-Script/blob/main/lab3/output/q11.png)
