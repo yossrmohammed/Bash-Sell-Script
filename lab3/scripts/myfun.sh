@@ -1,12 +1,11 @@
 #!/bin/bash
 
-mysq()
+function mysq
 {
-	read -p "enter number : " num
-       	((square = $num * $num ))
+       	(( square = $1 * $1 ))
 	echo $square;
 }
 
-mysq
+mysq $1
 
 
