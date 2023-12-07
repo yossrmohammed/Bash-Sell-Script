@@ -106,7 +106,53 @@
 ###### ls -R $@   
 ###### fi
 ![UNFOUND](https://github.com/yossrmohammed/Bash-Sell-Script/blob/main/lab2/output/q6.png)
+### 7. Create a script called mytest where
+#!/bin/bash
+######  echo "Type : "
+######  if [ -f $1 ] 
+###### then       
+###### 	echo file
+######  elif [ -d $1 ] 
+###### then
+###### echo directory
+###### fi
+###### echo  Available permissions : 
+###### if [ -r $1 ] 
+###### then
+###### 	echo  Read
+###### fi
+###### if [ -w $1 ] 
+###### then       
+###### 	echo   Write
+###### fi
+###### if [ -x $1 ] 
+###### then
+######        	echo  Execute
+fi
+![UNFOUND](https://github.com/yossrmohammed/Bash-Sell-Script/blob/main/lab2/output/q7.png)
+
+### 8. Create a script called mytest where
+
+   #### 1- It asks the user about his/her login name
+  #### 2-It prints full info about files and directories in his/her home directory
+  #### 3-Copy his/her files and directories as much as you can in /tmp directory Get his current processes status
+
+#!/bin/bash
+
+######  read -p "enter your login name : " lname;
+######  homedir="/home/$lname"
+
+######  if [ -e $homedir ]
+###### then
+###### ls -l $homedir
 
 
+ ###### echo "Processes Status : "
+###### ps -f
+###### cp -r $homeDir /tmp
+###### fi
+
+
+![UNFOUND](https://github.com/yossrmohammed/Bash-Sell-Script/blob/main/lab2/output/q8.png)
 
 
