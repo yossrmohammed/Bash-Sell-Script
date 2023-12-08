@@ -227,6 +227,11 @@
 ![UNFOUND](https://github.com/yossrmohammed/Bash-Sell-Script/blob/main/lab3/output/q3-after.png)
 
 ### 4. Write a script called mybackup using for utility to create a backup of only files in your home directory.
+###### #! /bin/bash
+###### cd ~
+###### 	tar -cvf backup.tar `find . -maxdepth 1 -type f `
+
+
 ![UNFOUND](https://github.com/yossrmohammed/Bash-Sell-Script/blob/main/lab3/output/q4.png)
 
 
