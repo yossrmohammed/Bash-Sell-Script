@@ -1,12 +1,6 @@
 #! /bin/bash
+cd ~
+	
+	tar -cvf backup.tar `find . -maxdepth 1 -type f `
 
-for file in `ls ~ `
-do
-
-	if [[ -f $file ]]
-	then 	
-		echo $file
-	  #tar -cvf mybackup $HOME/$file
-	fi
-done
 
